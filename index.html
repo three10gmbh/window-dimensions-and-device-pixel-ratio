@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Live-Display of Browser Window Dimensions and Device Pixel Ratio</title>
+        <style>
+            .footer {
+               position: fixed;
+               bottom: 1em;
+               width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <p>
+            <b>Window Width/Height:</b>
+            <span id="width">0</span> x <span id="height">0</span> px
+        </p>
+        <p>
+            <b>Device Pixel Ratio:</b>
+            <span id="pixelRatio">1</span>
+        </p>
+        <p>
+            <b>Device Pixel Width/Height:</b>
+            <span id="deviceWidth">0</span> x <span id="deviceHeight">0</span> px
+        </p>
+
+        <div class="footer">Credits: Based on <a href="https://jsfiddle.net/pilch/7T9gy/">https://jsfiddle.net/pilch/7T9gy/</a></div>
+        <script>
+            function updateSize() {
+                // Get the dimensions of the viewport
+                var width = window.innerWidth ||
+                            document.documentElement.clientWidth ||
+                            document.body.clientWidth;
+                var height = window.innerHeight ||
+                             document.documentElement.clientHeight ||
+                             document.body.clientHeight;
+
+                document.getElementById('width').innerHTML = width;
+                document.getElementById('height').innerHTML = height;
+                document.getElementById('deviceWidth').innerHTML = width * window.devicePixelRatio;
+                document.getElementById('deviceHeight').innerHTML = height * window.devicePixelRatio;
+                document.getElementById('pixelRatio').innerHTML = window.devicePixelRatio;
+            };
+            window.onload = updateSize;       // When the page first loads
+            window.onresize = updateSize;     // When the browser changes size
+        </script>
+    </body>
+</html>
